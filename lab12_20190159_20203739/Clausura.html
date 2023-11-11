@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,6 +7,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"   >
     <title>Lista de Clausura</title>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" ></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
 </head>
 <body>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -86,13 +87,22 @@
                         contentHTML += "<td>" + ligaprincipal.partidos_empatados + "</td>";
                         contentHTML += "<td>" + ligaprincipal.partidos_perdidos + "</td>";
                         contentHTML += "<td>";
-                        contentHTML += "<button className='btn btn-primary' href=''> Más Detalles</button>";
+                        contentHTML += "<button className='btn btn-primary' id='detallesBtn" + ligaprincipal.equipo.id+ "'> Más Detalles</button>";
                         contentHTML += "</td>";
                         contentHTML += "</tr>";
                     }
                 });
                 
                 $("#tablaData").html(contentHTML);
+
+                // Manejar clic en el botón Más Detalles
+                $('[id^="detallesBtn"]').on('click', function() {
+                    // Obtener el índice del botón haciendo clic
+                    var id = $(this).attr('id').replace('detallesBtn', '');
+
+                    // Redirigir a otro HTML, por ejemplo, "detalles.html"
+                    window.location.href = 'Equipos.html?id=' + id;
+                });
 
             })
             .fail(function (err){

@@ -90,13 +90,22 @@
                         contentHTML += "<td>" + ligaprincipal.partidos_empatados + "</td>";
                         contentHTML += "<td>" + ligaprincipal.partidos_perdidos + "</td>";
                         contentHTML += "<td>";
-                        contentHTML += "<button className='btn btn-primary' href=''> Más Detalles</button>";
+                        contentHTML += "<button className='btn btn-primary' id='detallesBtn" + ligaprincipal.equipo.id+ "'> Más Detalles</button>";
                         contentHTML += "</td>";
                         contentHTML += "</tr>";
                     }
                 });
 
                 $("#tablaData").html(contentHTML);
+
+                // Manejar clic en el botón Más Detalles
+                $('[id^="detallesBtn"]').on('click', function() {
+                    // Obtener el índice del botón haciendo clic
+                    var id = $(this).attr('id').replace('detallesBtn', '');
+
+                    // Redirigir a otro HTML, por ejemplo, "detalles.html"
+                    window.location.href = 'Equipos.html?id=' + id;
+                });
 
             })
             .fail(function (err){
