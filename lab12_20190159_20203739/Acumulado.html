@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TODO supply a title</title>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="#" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" >
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#obtenerLista").click(function () {
+                $.ajax({
+                    method: "GET",
+                    dataType: "json",
+                    crossDomain: true,
+                    url: "http://127.0.0.1:8000/api/equipos"
+                }).done(function (data) {
+                    if (data.estado === "ok") {
+                        var listaEmpleados = data.lista;
+                        var contentHtml = "";
+                        $.each(listaEmpleados, function (i, empleado) {
+                            contentHtml += "<tr>";
+                            contentHtml += "<td>" + (i + 1) + "</td>";
+                            contentHtml += "<td>" + empleado.nombre + "</td>";
+                            contentHtml += "<td>" + empleado.estadio + "</td>";
+                        });
+                        $("table tbody").html(contentHtml);
+                    } else {
+                        console.log(data.msg);
+                        alert(data.msg);
+                    }
+                }).fail(function (err) {
+                    var jsonData = err.responseJSON;
+                    console.log(jsonData.msg);
+                    alert(jsonData.msg);
+                });
+            });
+
+
+        });
+    </script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">LIGA 1</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link active"  aria-current="page" href="Acumulado.html">ACUMULADO</a>
+                <a class="nav-link active" href="Apertura.html">APERTURA</a>
+                <a class="nav-link active" href="Clausura.html">CLAUSURA</a>
+            </div>
+        </div>
+    </div>
+</nav>
+<main>
+    <div class="container px-4 py-5">
+        <div class="text-center">
+            <h1 class="pb-2 border-bottom">Tabla Acumulado</h1>
+        </div>
+        <div class="d-flex mt-3 mb-4">
+            <button class="btn btn-primary" id="obtenerLista">Lista Equipos</button>
+        </div>
+        <hr />
+        <table class="table">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Nombre del equipo</th>
+                <th>Puntos</th>
+                <th>Partidos Ganados</th>
+                <th>Partidos Empatados</th>
+                <th>Partidos Perdidos</th>
+                <th>Detalles</th>
+
+
+            </tr>
+            </tr>
+            </thead>
+            <tr>
+                <td>1</td>
+                <td>Universitario</td>
+                <td>Partidos Ganados</td>
+                <td>Partidos Ganados</td>
+                <td>Partidos Ganados</td>
+                <td>Partidos Ganados</td>
+                <td><a class="btn btn-primary"
+                       href="Equipos.html">Detalles</a>
+                </td>
+
+            </tr>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</main>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</html>
