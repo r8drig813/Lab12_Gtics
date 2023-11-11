@@ -43,7 +43,8 @@
                 <th>Partidos Ganados</th>
                 <th>Partidos Empatados</th>
                 <th>Partidos Perdidos</th>
-                
+                <th>Detalles</th>
+
 
 
             </tr>
@@ -125,13 +126,22 @@
                     contentHTML += "<td>" + partGnados[ordenEquipo] + "</td>";
                     contentHTML += "<td>" + partEmpatados[ordenEquipo] + "</td>";
                     contentHTML += "<td>" + partPerdidos[ordenEquipo] + "</td>";
-
+                    contentHTML += "<td>";
+                    contentHTML += "<button className='btn btn-primary' id='detallesBtn" + ligaAp.equipo.id+ "'> Más Detalles</button>";
+                    contentHTML += "</td>";
                     contentHTML += "</tr>";
                     ordenEquipo = ordenEquipo +1;
                 });
 
                 $("#tablaData").html(contentHTML);
+                // Manejar clic en el botón Más Detalles
+                $('[id^="detallesBtn"]').on('click', function() {
+                    // Obtener el índice del botón haciendo clic
+                    var id = $(this).attr('id').replace('detallesBtn', '');
 
+                    // Redirigir a otro HTML, por ejemplo, "detalles.html"
+                    window.location.href = 'Equipos.html?id=' + id;
+                });
             })
             .fail(function (err){
                 console.log(err);

@@ -31,22 +31,18 @@
     <div class="text-center">
       <h1 class="pb-2 border-bottom">Detalles del equipo</h1>
     </div>
-    <div class="d-flex mt-3 mb-4">
 
-      <a class="btn btn-secondary ms-auto"  href="Acumulado.html">Regresar</a>
-    </div>
-    <hr />
     <table class="table">
       <thead>
       <tr>
-        <th>#</th>
+        
         <th>Nombre del equipo</th>
         <th>Estadio</th>
       </tr>
       </thead>
       <tbody id="tablaData">
       <tr>
-        <td></td>
+
         <td></td>
         <td></td>
       </tr>
@@ -72,7 +68,7 @@
       $.each(data, function (i, equipo) {
         if(equipo.id==equipoId){
         contentHTML += "<tr>";
-        contentHTML += "<td>" + (i + 1) + "</td>";
+
         contentHTML += "<td>" + equipo.nombre + "</td>";
         contentHTML += "<td>" + equipo.estadio + "</td>";
         contentHTML += "</tr>";
