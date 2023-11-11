@@ -73,10 +73,13 @@
             .done(function (data){  //data u otra variable es la resuesta que recibe del serve eneste caso un json convalores para cada variable
                 console.log(data);
                 var contentHTML = "";
+                var ordenEquipo = 0;
                 $.each(data, function (i, ligaprincipal){
+
                     if(ligaprincipal.liga==2) {
                         contentHTML += "<tr>";
-                        contentHTML += "<td>" + (i+1) + "</td>";
+                        contentHTML += "<td>" + (ordenEquipo+1) + "</td>";
+                        ordenEquipo = ordenEquipo +1;
                         contentHTML += "<td>" + ligaprincipal.equipo.nombre + "</td>";
                         contentHTML += "<td>" + ligaprincipal.puntos + "</td>";
                         contentHTML += "<td>" + ligaprincipal.partidos_ganados + "</td>";

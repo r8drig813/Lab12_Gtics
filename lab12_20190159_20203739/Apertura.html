@@ -8,39 +8,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"   >
     <title>Lista de Apertura</title>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" ></script>
-    <!--<script>
-        $(document).ready(function () {
-            $("#obtenerLista").click(function () {
-                $.ajax({
-                    method: "GET",
-                    dataType: "json",
-                    crossDomain: true,
-                    url: "http://127.0.0.1:8000/api/equipos"
-                }).done(function (data) {
-                    if (data.estado === "ok") {
-                        var listaEmpleados = data.lista;
-                        var contentHtml = "";
-                        $.each(listaEmpleados, function (i, empleado) {
-                            contentHtml += "<tr>";
-                            contentHtml += "<td>" + (i + 1) + "</td>";
-                            contentHtml += "<td>" + empleado.nombre + "</td>";
-                            contentHtml += "<td>" + empleado.estadio + "</td>";
-                        });
-                        $("table tbody").html(contentHtml);
-                    } else {
-                        console.log(data.msg);
-                        alert(data.msg);
-                    }
-                }).fail(function (err) {
-                    var jsonData = err.responseJSON;
-                    console.log(jsonData.msg);
-                    alert(jsonData.msg);
-                });
-            });
 
-
-        });
-    </script> -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 <body>
@@ -110,10 +78,12 @@
             .done(function (data){  //data u otra variable es la resuesta que recibe del serve eneste caso un json convalores para cada variable
                 console.log(data);
                 var contentHTML = "";
+                var ordenEquipo = 0;
                 $.each(data, function (i, ligaprincipal){
                     if(ligaprincipal.liga==1) {
                         contentHTML += "<tr>";
-                        contentHTML += "<td>" + (i+1) + "</td>";
+                        contentHTML += "<td>" + (ordenEquipo+1) + "</td>";
+                        ordenEquipo = ordenEquipo +1;
                         contentHTML += "<td>" + ligaprincipal.equipo.nombre + "</td>";
                         contentHTML += "<td>" + ligaprincipal.puntos + "</td>";
                         contentHTML += "<td>" + ligaprincipal.partidos_ganados + "</td>";
