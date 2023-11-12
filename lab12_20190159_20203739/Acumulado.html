@@ -111,26 +111,27 @@
                             partPerdidos[contGnral] =ligaAp.partidos_perdidos + ligaClau.partidos_perdidos;
                             contGnral=contGnral+1;
                         }
-
                     });
                 });
 
 
                 var ordenEquipo=0;
                 $.each(arregloApertura, function (i, ligaAp){
-                    contentHTML += "<tr>";
-                    contentHTML += "<td>" + (ordenEquipo+1) + "</td>";
+                    if(puntos[ordenEquipo] != undefined) {
+                        contentHTML += "<tr>";
+                        contentHTML += "<td>" + (ordenEquipo + 1) + "</td>";
 
-                    contentHTML += "<td>" + ligaAp.equipo.nombre + "</td>";
-                    contentHTML += "<td>" + puntos[ordenEquipo] + "</td>";
-                    contentHTML += "<td>" + partGnados[ordenEquipo] + "</td>";
-                    contentHTML += "<td>" + partEmpatados[ordenEquipo] + "</td>";
-                    contentHTML += "<td>" + partPerdidos[ordenEquipo] + "</td>";
-                    contentHTML += "<td>";
-                    contentHTML += "<button className='btn btn-primary' id='detallesBtn" + ligaAp.equipo.id+ "'> Más Detalles</button>";
-                    contentHTML += "</td>";
-                    contentHTML += "</tr>";
-                    ordenEquipo = ordenEquipo +1;
+                        contentHTML += "<td>" + ligaAp.equipo.nombre + "</td>";
+                        contentHTML += "<td>" + puntos[ordenEquipo] + "</td>";
+                        contentHTML += "<td>" + partGnados[ordenEquipo] + "</td>";
+                        contentHTML += "<td>" + partEmpatados[ordenEquipo] + "</td>";
+                        contentHTML += "<td>" + partPerdidos[ordenEquipo] + "</td>";
+                        contentHTML += "<td>";
+                        contentHTML += "<button className='btn btn-primary' id='detallesBtn" + ligaAp.equipo.id + "'> Más Detalles</button>";
+                        contentHTML += "</td>";
+                        contentHTML += "</tr>";
+                        ordenEquipo = ordenEquipo + 1;
+                    }
                 });
 
                 $("#tablaData").html(contentHTML);
