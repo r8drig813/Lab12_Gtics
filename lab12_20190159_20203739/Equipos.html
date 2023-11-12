@@ -35,9 +35,14 @@
     <table class="table">
       <thead>
       <tr>
-        
+        <th>LIGA</th>
         <th>Nombre del equipo</th>
         <th>Estadio</th>
+        <th>Goles a favor</th>
+        <th>Goles en contra</th>
+        <th>Diferencia de goles</th>
+        <th>Puntaje</th>
+
       </tr>
       </thead>
       <tbody id="tablaData">
@@ -45,6 +50,12 @@
 
         <td></td>
         <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+
       </tr>
       </tbody>
     </table>
@@ -59,19 +70,36 @@
     var urlParams = new URLSearchParams(window.location.search);
     var equipoId = urlParams.get('id');
     $.ajax({
-      url: "http://localhost:8000/api/equipos/",
+      url: "http://localhost:8000/api/liga/",
       method: "GET",
       dataType: "json",
     }).done(function (data) {
       console.log(data);
       var contentHTML = "";
-      $.each(data, function (i, equipo) {
-        if(equipo.id==equipoId){
-        contentHTML += "<tr>";
-
-        contentHTML += "<td>" + equipo.nombre + "</td>";
-        contentHTML += "<td>" + equipo.estadio + "</td>";
-        contentHTML += "</tr>";
+      $.each(data, function (i,liga) {
+        if(liga.equipo.id==equipoId){
+          if(liga.liga==1){
+            contentHTML += "<tr>";
+            contentHTML += "<td>Apertura </td>";
+            contentHTML += "<td>" + liga.equipo.nombre + "</td>";
+            contentHTML += "<td>" + liga.equipo.estadio + "</td>";
+            contentHTML += "<td>" + liga.goles_favor + "</td>";
+            contentHTML += "<td>" + liga.goles_contra + "</td>";
+            contentHTML += "<td>" + liga.goles_diferencia + "</td>";
+            contentHTML += "<td>" + liga.puntos + "</td>";
+            contentHTML += "</tr>";
+          }
+          if(liga.liga==2){
+            contentHTML += "<tr>";
+            contentHTML += "<td>Clausura  </td>";
+            contentHTML += "<td>" + liga.equipo.nombre + "</td>";
+            contentHTML += "<td>" + liga.equipo.estadio + "</td>";
+            contentHTML += "<td>" + liga.goles_favor + "</td>";
+            contentHTML += "<td>" + liga.goles_contra + "</td>";
+            contentHTML += "<td>" + liga.goles_diferencia + "</td>";
+            contentHTML += "<td>" + liga.puntos + "</td>";
+            contentHTML += "</tr>";
+          }
         }
       });
 
